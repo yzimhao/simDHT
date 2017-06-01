@@ -12,6 +12,10 @@ from collections import deque
 
 from bencode import bencode, bdecode
 
+
+import requests
+
+
 BOOTSTRAP_NODES = (
     ("router.bittorrent.com", 6881),
     ("dht.transmissionbt.com", 6881),
@@ -237,6 +241,8 @@ class Master(object):
         print "%s from %s:%s" % (
             infohash.encode("hex"), address[0], address[1]
         )
+
+        requests.get('http://127.0.0.1:3178/tool/hash?hash=%s' % infohash.encode("hex"));
 
 
 # using example
